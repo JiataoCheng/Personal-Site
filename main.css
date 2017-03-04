@@ -1,0 +1,268 @@
+body {
+  background-color: #000000;
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  overflow: hidden;
+}
+
+#nav-bar {
+  height: 5em;
+  width: 100%;
+  background-color: white;
+  opacity: 0.1;
+}
+
+#gradient
+{
+width: 100%;
+height: 800px;
+padding: 0px;
+margin: 0px;
+}
+
+/*Sentence*/
+.sentence {
+     color: #222;
+     font-size: 30px;
+     text-align: left;
+     padding-left: 1rem;
+}
+
+/*Vertical Sliding*/
+.slidingVertical{
+	display: inline;
+	text-indent: 8px;
+}
+.slidingVertical span{
+	animation: topToBottom 12.5s linear infinite 0s;
+	-ms-animation: topToBottom 12.5s linear infinite 0s;
+	-webkit-animation: topToBottom 12.5s linear infinite 0s;
+	color: #00abe9;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+}
+.slidingVertical span:nth-child(2){
+	animation-delay: 2.5s;
+	-ms-animation-delay: 2.5s;
+	-webkit-animation-delay: 2.5s;
+}
+.slidingVertical span:nth-child(3){
+	animation-delay: 5s;
+	-ms-animation-delay: 5s;
+	-webkit-animation-delay: 5s;
+}
+.slidingVertical span:nth-child(4){
+	animation-delay: 7.5s;
+	-ms-animation-delay: 7.5s;
+	-webkit-animation-delay: 7.5s;
+}
+.slidingVertical span:nth-child(5){
+	animation-delay: 10s;
+	-ms-animation-delay: 10s;
+	-webkit-animation-delay: 10s;
+}
+
+/*topToBottom Animation*/
+@-moz-keyframes topToBottom{
+	0% { opacity: 0; }
+	5% { opacity: 0; -moz-transform: translateY(-50px); }
+	10% { opacity: 1; -moz-transform: translateY(0px); }
+	25% { opacity: 1; -moz-transform: translateY(0px); }
+	30% { opacity: 0; -moz-transform: translateY(50px); }
+	80% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-webkit-keyframes topToBottom{
+	0% { opacity: 0; }
+	5% { opacity: 0; -webkit-transform: translateY(-50px); }
+	10% { opacity: 1; -webkit-transform: translateY(0px); }
+	25% { opacity: 1; -webkit-transform: translateY(0px); }
+	30% { opacity: 0; -webkit-transform: translateY(50px); }
+	80% { opacity: 0; }
+	100% { opacity: 0; }
+}
+@-ms-keyframes topToBottom{
+	0% { opacity: 0; }
+	5% { opacity: 0; -ms-transform: translateY(-50px); }
+	10% { opacity: 1; -ms-transform: translateY(0px); }
+	25% { opacity: 1; -ms-transform: translateY(0px); }
+	30% { opacity: 0; -ms-transform: translateY(50px); }
+	80% { opacity: 0; }
+	100% { opacity: 0; }
+}
+
+.page {
+  height: 100%;
+  background-color: $brown;
+}
+.content {
+  // essential
+  height: 200%; // make higher or you'll see background when rotated
+  transform-origin: top left;
+  transition: transform .7s $snap;
+
+  // styling
+  background-color: $whitey;
+}
+.content_inner {
+  // essential
+  height: 50%; // compensate for higher .content
+  overflow-y: auto; // set expected overflow
+
+  // styling
+  padding: 50px 20%;
+}
+
+/* basically all styling from now on */
+.menu_toggle {
+  z-index: 900;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  cursor: pointer;
+  width: 100px;
+  height: 80px;
+  background-color: $red;
+  border-bottom-right-radius: 100%;
+
+  &:active {
+    i {
+      opacity: 0.8
+    }
+  }
+  i {
+    color: $whitey;
+  }
+  .menu_open,
+  .menu_close {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -12px;
+    transition: transform .7s $snap;
+  }
+  .menu_open {
+    transform-origin: -100px -100px;
+  }
+  .menu_close {
+    transform: rotate(20deg);
+    transform-origin: -100px -160px;
+  }
+}
+.menu_items {
+  position: fixed;
+  bottom: 0;
+  left: 50px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    height: 60px;
+    margin-bottom: 30px;
+    transform: translateX(-300px);
+    transition: transform .7s 0s $snap;
+
+    &:nth-child(2){
+      margin-left: 40px;
+    }
+    &:nth-child(3){
+      margin-left: 80px;
+    }
+  }
+  a {
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: darken($whitey, 30%);
+    transition: color .2s;
+
+    .icon {
+      position: relative;
+      display: inline-block;
+      margin-right: 25px;
+      color: $whitey;
+
+      &:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        content: '';
+        display: block;
+        width: 60px;
+        height: 60px;
+        margin-left: -33px;
+        margin-top: -32px;
+        border-radius: 100%;
+        border: 2px solid $whitey;
+        transition: border-color .2s;
+      }
+    }
+
+    &:hover {
+      color: $whitey;
+      .icon {
+        &:after {
+          border-color: $red;
+        }
+      }
+    }
+    &:active {
+      .icon {
+        color: $red;
+      }
+    }
+  }
+}
+
+
+/* Let's open up the menu */
+.shazam {
+  .content {
+    transform: rotate(-30deg);
+  }
+
+  // this will show hidden content overflow when rotated,
+  // but will result in a jump, if you've already scrolled down the content
+  // plus, you will lose your current reading position
+  // fixable with JS, not gonna bother
+
+  /*.content_inner {
+    height: 100%;
+  }*/
+
+  .menu_open {
+    transform: rotate(-20deg);
+  }
+  .menu_close {
+    transform: rotate(0);
+  }
+
+  .menu_items {
+    li {
+      transform: translateX(0);
+      transition: transform .35s .45s $bounce;
+
+      &:nth-child(2){
+        transition-delay: .47s;
+      }
+      &:nth-child(3){
+        transition-delay: .48s;
+      }
+    }
+  }
+}
+
+// misc
+h1 {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+body {
+  color: $brown;
+}
